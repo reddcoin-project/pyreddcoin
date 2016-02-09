@@ -14,7 +14,7 @@ setup(
     author='Blockstack Developers',
     author_email='hello@onename.com',
     description="""Library for Bitcoin & other cryptocurrencies. Tools are provided for blockchain transactions, RPC calls, and private keys, public keys, and addresses.""",
-    keywords='bitcoin btc litecoin namecoin dogecoin cryptocurrency',
+    keywords='bitcoin btc reddcoin litecoin namecoin dogecoin cryptocurrency',
     packages=find_packages(),
     zip_safe=False,
     install_requires=[

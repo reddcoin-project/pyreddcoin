@@ -40,6 +40,15 @@ class BitcoinPrivateKey():
     _curve = ecdsa.curves.SECP256k1
     _hash_function = hashlib.sha256
     _pubkeyhash_version_byte = 0
+    
+    @classmethod
+    def version_byte(cls, type='pubkey_hash'):
+        if type == 'pubkey_hash':
+            return cls._pubkeyhash_version_byte
+        elif type == 'private_key':
+            return (cls._pubkeyhash_version_byte + 128) % 256
+        else:
+            raise Exception("type must be 'pubkey_hash' or 'privatekey'")
 
     @classmethod
     def wif_version_byte(cls):
@@ -50,6 +59,7 @@ class BitcoinPrivateKey():
     def __init__(self, private_key=None, compressed=False):
         """ Takes in a private key/secret exponent.
         """
+
         self._compressed = compressed
         if not private_key:
             secret_exponent = random_secret_exponent(self._curve.order)
@@ -146,3 +156,7 @@ class LitecoinPrivateKey(BitcoinPrivateKey):
 
 class NamecoinPrivateKey(BitcoinPrivateKey):
     _pubkeyhash_version_byte = 52
+
+
+class ReddcoinPrivateKey(BitcoinPrivateKey):
+    _pubkeyhash_version_byte = 111

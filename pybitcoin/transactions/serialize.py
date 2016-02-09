@@ -13,7 +13,7 @@ import struct
 from binascii import hexlify, unhexlify
 
 from .utils import flip_endian, variable_length_int
-from ..constants import UINT_MAX
+from ..constants import UINT_MAX, TX_VERSION
 
 
 def serialize_input(input, signature_script_hex=''):
@@ -48,10 +48,11 @@ def serialize_output(output):
     ])
 
 
-def serialize_transaction(inputs, outputs, lock_time=0, version=1):
+def serialize_transaction(inputs, outputs, lock_time=0, version=TX_VERSION):
     """ Serializes a transaction.
     """
-
+    print ("TX_VERSION == %s" % version)
+    
     # add in the inputs
     serialized_inputs = ''.join([serialize_input(input) for input in inputs])
 

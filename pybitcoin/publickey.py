@@ -104,7 +104,7 @@ def extract_bin_bitcoin_pubkey(public_key):
         raise ValueError(_errors['IMPROPER_PUBLIC_KEY_FORMAT'])
 
 
-class BitcoinPublicKey():
+class BitcoinPublicKey(object):
     _curve = ecdsa.curves.SECP256k1
     _version_byte = 0
 
@@ -112,7 +112,7 @@ class BitcoinPublicKey():
     def version_byte(cls):
         return cls._version_byte
 
-    def __init__(self, public_key_string, version_byte=None, verify=True):
+    def __init__(self, public_key_string, version_byte=None, verify=True, testnet=False):
         """ Takes in a public key in hex format.
         """
         # set the version byte
@@ -171,3 +171,8 @@ class LitecoinPublicKey(BitcoinPublicKey):
 
 class NamecoinPublicKey(BitcoinPublicKey):
     _version_byte = 52
+
+
+class ReddcoinPublicKey(BitcoinPublicKey):
+    _version_byte = 111
+    #_testnet_version_bytes=111
