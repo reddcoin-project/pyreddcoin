@@ -9,6 +9,7 @@
 
 import bitcoin
 import struct
+import time
 
 from binascii import hexlify, unhexlify
 
@@ -51,13 +52,13 @@ def serialize_output(output):
 def serialize_transaction(inputs, outputs, lock_time=0, version=TX_VERSION):
     """ Serializes a transaction.
     """
-    print ("TX_VERSION == %s" % version)
-    
     # add in the inputs
     serialized_inputs = ''.join([serialize_input(input) for input in inputs])
 
     # add in the outputs
     serialized_outputs = ''.join([serialize_output(output) for output in outputs])
+
+    timestamp = int(time.time())
 
     return ''.join([
         # add in the version number
@@ -72,6 +73,8 @@ def serialize_transaction(inputs, outputs, lock_time=0, version=TX_VERSION):
         serialized_outputs,
         # add in the lock time
         hexlify(struct.pack('<I', lock_time)),
+        # add in the PoSV time
+        hexlify(struct.pack('<I', timestamp)),
     ])
 
 
@@ -121,4 +124,4 @@ def deserialize_transaction(tx_hex):
 
         ret_outputs.append(ret_out)
 
-    return ret_inputs, ret_outputs, tx["locktime"], tx["version"]
+    return ret_inputs, ret_outputs, tx["locktime"], tx["version"], tx["time"]
