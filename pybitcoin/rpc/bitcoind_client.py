@@ -190,3 +190,14 @@ class BitcoindClient(object):
             return {'transaction_hash': resp, 'success': True}
         else:
             return error_reply('Invalid response from bitcoind.')
+
+    # -----------------------------------
+    def listaddressgroupings(self):
+        """ Return address associations.
+        """
+
+        resp = self.obj.listaddressgroupings()
+        if len(resp) > 0:
+            return {resp}
+        else:
+            return error_reply('Invalid response from bitcoind.')
