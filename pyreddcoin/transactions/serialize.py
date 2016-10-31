@@ -101,7 +101,7 @@ def deserialize_transaction(tx_hex):
         * script_hex: string
     """
 
-    tx = bitcoin.deserialize(str(tx_hex))
+    tx = pyreddcointools.deserialize(str(tx_hex))
 
     inputs = tx["ins"]
     outputs = tx["outs"]

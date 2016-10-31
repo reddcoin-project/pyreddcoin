@@ -8,9 +8,9 @@ pybitcoin
 from setuptools import setup, find_packages
 
 setup(
-    name='pybitcoin',
+    name='pyreddcoin',
     version='0.9.9',
-    url='https://github.com/blockstack/pybitcoin',
+    url='https://github.com/blockstack/pyreddcoin',
     license='MIT',
     author='Blockstack Developers',
     author_email='hello@onename.com',
@@ -25,7 +25,7 @@ setup(
         'utilitybelt>=0.2.6',
         'python-bitcoinrpc==0.1',
         'keychain>=0.1.4',
-        'bitcoin>=1.1.42'
+        'pyreddcointools>=1.1.42'
     ],
     classifiers=[
         'Intended Audience :: Developers',
