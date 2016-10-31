@@ -11,7 +11,7 @@ from binascii import hexlify, unhexlify
 from bitcoin import sign as sign_transaction
 
 from ..services import blockchain_info, chain_com, bitcoind, blockcypher
-from ..privatekey import BitcoinPrivateKey
+from ..privatekey import ReddcoinPrivateKey
 from .serialize import serialize_transaction, deserialize_transaction
 from .outputs import make_pay_to_address_outputs, make_op_return_outputs
 from ..constants import STANDARD_FEE, OP_RETURN_FEE
@@ -68,10 +68,10 @@ def broadcast_transaction(hex_tx, blockchain_client):
 
 
 def get_private_key_obj(private_key):
-    if isinstance(private_key, BitcoinPrivateKey):
+    if isinstance(private_key, ReddcoinPrivateKey):
         return private_key
     else:
-        return BitcoinPrivateKey(private_key)
+        return ReddcoinPrivateKey(private_key)
 
 
 def analyze_private_key(private_key, blockchain_client):
@@ -170,8 +170,16 @@ def serialize_sign_and_broadcast(inputs, outputs, private_key,
     # extract the private key object
     private_key_obj = get_private_key_obj(private_key)
 
+    print("SS_&_B: Priv_Key :: = %s" % private_key_obj.to_hex())
+    print("SS_&_B: INPUTS :: = %s" % inputs)
+    print("SS_&_B: OUTPUTS :: = %s" % outputs)
+
     # serialize the transaction
     unsigned_tx = serialize_transaction(inputs, outputs)
+
+    print("SS_&_B: Un_TX :: = %s" % unsigned_tx)
+
+    print("SS_&_B: Length of Inputs = %s" % xrange(0, len(inputs)))
 
     # generate a scriptSig for each input
     for i in xrange(0, len(inputs)):

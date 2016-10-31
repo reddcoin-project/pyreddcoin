@@ -12,8 +12,8 @@ import traceback
 import unittest
 from test import test_support
 
-from pybitcoin.publickey import BitcoinPublicKey
-from pybitcoin.privatekey import BitcoinPrivateKey, NamecoinPrivateKey
+from pybitcoin.publickey import BitcoinPublicKey, ReddcoinPublicKey
+from pybitcoin.privatekey import BitcoinPrivateKey, NamecoinPrivateKey, ReddcoinPrivateKey
 from pybitcoin.keypair import BitcoinKeypair
 from pybitcoin.rpc import BitcoindClient
 from pybitcoin.wallet import SDWallet
