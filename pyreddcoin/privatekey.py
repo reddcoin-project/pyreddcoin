@@ -14,7 +14,7 @@ import ecdsa
 from binascii import hexlify, unhexlify
 from ecdsa.keys import SigningKey
 from utilitybelt import is_int, dev_random_entropy, dev_urandom_entropy
-from bitcoin import compress, encode_privkey, get_privkey_format
+from pyreddcointools import compress, encode_privkey, get_privkey_format
 
 from .errors import _errors
 from .formatcheck import *

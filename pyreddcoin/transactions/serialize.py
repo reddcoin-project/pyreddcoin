@@ -7,7 +7,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-import bitcoin
+import pyreddcointools
 import struct
 import time
 

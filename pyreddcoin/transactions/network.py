@@ -8,7 +8,7 @@
 """
 
 from binascii import hexlify, unhexlify
-from bitcoin import sign as sign_transaction
+from pyreddcointools import sign as sign_transaction
 
 from ..services import blockchain_info, chain_com, bitcoind, blockcypher
 from ..privatekey import ReddcoinPrivateKey
@@ -170,7 +170,7 @@ def serialize_sign_and_broadcast(inputs, outputs, private_key,
     # extract the private key object
     private_key_obj = get_private_key_obj(private_key)
 
-    print("SS_&_B: Priv_Key :: = %s" % private_key_obj.to_hex())
+    print("SS_&_B: Priv_Key :: = %s" % private_key_obj.to_wif())
     print("SS_&_B: INPUTS :: = %s" % inputs)
     print("SS_&_B: OUTPUTS :: = %s" % outputs)
 
@@ -185,6 +185,8 @@ def serialize_sign_and_broadcast(inputs, outputs, private_key,
     for i in xrange(0, len(inputs)):
         signed_tx = sign_transaction(unsigned_tx, i, private_key_obj.to_hex())
         unsigned_tx = signed_tx
+
+    print("SS_&_B: Signed_TX :: = %s" % unsigned_tx)
 
     # dispatch the signed transaction to the network
     response = broadcast_transaction(signed_tx, blockchain_client)
@@ -202,7 +204,7 @@ def sign_all_unsigned_inputs(hex_privkey, unsigned_tx_hex):
         Returns: signed hex transaction
     """
     inputs, outputs, locktime, version = deserialize_transaction(unsigned_tx_hex)
-    tx_hex = unsigned_tx_hex
+
     for index in xrange(0, len(inputs)):
         if len(inputs[index]['script_sig']) == 0:
 

@@ -13,7 +13,7 @@ import hashlib
 import ecdsa
 from binascii import hexlify, unhexlify
 from ecdsa.keys import VerifyingKey
-from bitcoin import decompress, compress, pubkey_to_address
+from pyreddcointools import decompress, compress, pubkey_to_address
 from utilitybelt import is_hex
 
 from .errors import _errors
