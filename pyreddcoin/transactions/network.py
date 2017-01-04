@@ -170,16 +170,16 @@ def serialize_sign_and_broadcast(inputs, outputs, private_key,
     # extract the private key object
     private_key_obj = get_private_key_obj(private_key)
 
-    print("SS_&_B: Priv_Key :: = %s" % private_key_obj.to_wif())
-    print("SS_&_B: INPUTS :: = %s" % inputs)
-    print("SS_&_B: OUTPUTS :: = %s" % outputs)
+    #print("SS_&_B: Priv_Key :: = %s" % private_key_obj.to_wif())
+    #print("SS_&_B: INPUTS :: = %s" % inputs)
+    #print("SS_&_B: OUTPUTS :: = %s" % outputs)
 
     # serialize the transaction
     unsigned_tx = serialize_transaction(inputs, outputs)
 
     print("SS_&_B: Un_TX :: = %s" % unsigned_tx)
 
-    print("SS_&_B: Length of Inputs = %s" % xrange(0, len(inputs)))
+    #print("SS_&_B: Length of Inputs = %s" % xrange(0, len(inputs)))
 
     # generate a scriptSig for each input
     for i in xrange(0, len(inputs)):
