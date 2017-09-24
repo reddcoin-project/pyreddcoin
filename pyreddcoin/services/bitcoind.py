@@ -87,8 +87,10 @@ def broadcast_transaction(hex_tx, blockchain_client):
     else:
         raise Exception('A BitcoindClient object is required')
 
+    allow_high_fee = True
+
     try:
-        resp = bitcoind.sendrawtransaction(hex_tx)
+        resp = bitcoind.sendrawtransaction(hex_tx, allow_high_fee)
     except httplib.BadStatusLine:
         raise Exception('Invalid HTTP status code from bitcoind.')
 

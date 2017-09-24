@@ -12,24 +12,25 @@ import traceback
 import unittest
 from test import test_support
 
-from pybitcoin.publickey import BitcoinPublicKey
-from pybitcoin.privatekey import BitcoinPrivateKey, NamecoinPrivateKey
-from pybitcoin.keypair import BitcoinKeypair
-from pybitcoin.rpc import BitcoindClient
-from pybitcoin.wallet import SDWallet
-from pybitcoin.merkle import MerkleTree, calculate_merkle_root
+from pyreddcoin.publickey import BitcoinPublicKey, ReddcoinPublicKey
+from pyreddcoin.privatekey import BitcoinPrivateKey, NamecoinPrivateKey, ReddcoinPrivateKey
+from pyreddcoin.keypair import BitcoinKeypair
+from pyreddcoin.rpc import BitcoindClient
+from pyreddcoin.wallet import SDWallet
+from pyreddcoin.merkle import MerkleTree, calculate_merkle_root
 
-from pybitcoin.b58check import b58check_encode, b58check_decode, b58check_unpack
-from pybitcoin.formatcheck import is_b58check_address, is_256bit_hex_string, \
+from pyreddcoin.b58check import b58check_encode, b58check_decode, b58check_unpack
+from pyreddcoin.formatcheck import is_b58check_address, is_256bit_hex_string, \
     is_wif_pk
 
-from pybitcoin.transactions import analyze_private_key
-from pybitcoin.transactions.network import make_send_to_address_tx, \
+from pyreddcoin.transactions import analyze_private_key
+from pyreddcoin.transactions.network import make_send_to_address_tx, \
     make_op_return_tx, send_to_address, broadcast_transaction
 
-from pybitcoin.services import blockcypher
-from pybitcoin.services import blockchain_info
-from pybitcoin.services.bitcoind import create_bitcoind_service_proxy
+from pyreddcoin.services import blockcypher
+from pyreddcoin.services import blockchain_info
+from pyreddcoin.services import reddcoin_com
+from pyreddcoin.services.bitcoind import create_bitcoind_service_proxy
 
 from pybitcoin import PrivateKeychain, PublicKeychain
 

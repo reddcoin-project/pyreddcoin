@@ -8,14 +8,14 @@ pybitcoin
 from setuptools import setup, find_packages
 
 setup(
-    name='pybitcoin',
+    name='pyreddcoin',
     version='0.9.9',
-    url='https://github.com/blockstack/pybitcoin',
+    url='https://github.com/blockstack/pyreddcoin',
     license='MIT',
     author='Blockstack Developers',
     author_email='hello@onename.com',
     description="""Library for Bitcoin & other cryptocurrencies. Tools are provided for blockchain transactions, RPC calls, and private keys, public keys, and addresses.""",
-    keywords='bitcoin btc litecoin namecoin dogecoin cryptocurrency',
+    keywords='bitcoin btc reddcoin litecoin namecoin dogecoin cryptocurrency',
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
@@ -25,7 +25,7 @@ setup(
         'utilitybelt>=0.2.6',
         'python-bitcoinrpc==0.1',
         'keychain>=0.1.4',
-        'bitcoin>=1.1.42'
+        'pyreddcointools>=1.1.42'
     ],
     classifiers=[
         'Intended Audience :: Developers',

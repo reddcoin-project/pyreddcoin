@@ -18,7 +18,7 @@ For Namecoind:
 For the latest version:
 
 ```
-pip install git+ssh://git@github.com/openname/pybitcoin.git/@rpc
+pip install git+ssh://git@github.com/openname/pyreddcoin.git/@rpc
 ```
 
 By default bitcoind is turned off and the configuration of a public namecoind server is used. Custom namecoind/bitcoind servers can be used by setting the appropriate ENV VARIABLES (see [config.py](coinrpc/config.py)) e.g., by sourcing the following scripts:
@@ -31,6 +31,6 @@ source <path-to-dir>/scripts/setup_bitcoind.sh
 ## Usage: 
 
 ```
-from pybitcoin.rpc import namecoind
+from pyreddcoin.rpc import namecoind
 print namecoind.blocks()
 ```
