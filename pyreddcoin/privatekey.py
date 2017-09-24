@@ -159,4 +159,5 @@ class NamecoinPrivateKey(BitcoinPrivateKey):
 
 
 class ReddcoinPrivateKey(BitcoinPrivateKey):
-    _pubkeyhash_version_byte = 111
+    _pubkeyhash_version_byte = 61
+    #_testnet_version_bytes=111
