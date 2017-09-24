@@ -29,6 +29,7 @@ from pyreddcoin.transactions.network import make_send_to_address_tx, \
 
 from pyreddcoin.services import blockcypher
 from pyreddcoin.services import blockchain_info
+from pyreddcoin.services import reddcoin_com
 from pyreddcoin.services.bitcoind import create_bitcoind_service_proxy
 
 from pybitcoin import PrivateKeychain, PublicKeychain

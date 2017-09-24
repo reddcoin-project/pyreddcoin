@@ -10,7 +10,7 @@
 from binascii import hexlify, unhexlify
 from pyreddcointools import sign as sign_transaction
 
-from ..services import blockchain_info, chain_com, bitcoind, blockcypher
+from ..services import blockchain_info, chain_com, bitcoind, blockcypher, reddcoin_com
 from ..privatekey import ReddcoinPrivateKey
 from .serialize import serialize_transaction, deserialize_transaction
 from .outputs import make_pay_to_address_outputs, make_op_return_outputs
@@ -24,7 +24,7 @@ from ..constants import STANDARD_FEE, OP_RETURN_FEE
     chain.com: auth=(api_key_id, api_key_secret)
 """
 
-from ..services import (ChainComClient, BlockchainInfoClient, BitcoindClient,
+from ..services import (ChainComClient, BlockchainInfoClient, ReddcoinComClient, BitcoindClient,
     BlockcypherClient, BlockchainClient)
 from bitcoinrpc.authproxy import AuthServiceProxy
 
@@ -36,6 +36,8 @@ def get_unspents(address, blockchain_client=BlockchainInfoClient()):
         return blockcypher.get_unspents(address, blockchain_client)
     elif isinstance(blockchain_client, BlockchainInfoClient):
         return blockchain_info.get_unspents(address, blockchain_client)
+    elif isinstance(blockchain_client, ReddcoinComClient):
+        return reddcoin_com.get_unspents(address, blockchain_client)
     elif isinstance(blockchain_client, ChainComClient):
         return chain_com.get_unspents(address, blockchain_client)
     elif isinstance(blockchain_client, (BitcoindClient, AuthServiceProxy)):
@@ -55,6 +57,8 @@ def broadcast_transaction(hex_tx, blockchain_client):
         return blockcypher.broadcast_transaction(hex_tx, blockchain_client)
     elif isinstance(blockchain_client, BlockchainInfoClient):
         return blockchain_info.broadcast_transaction(hex_tx, blockchain_client)
+    elif isinstance(blockchain_client, ReddcoinComClient):
+        return reddcoin_com.broadcast_transaction(hex_tx, blockchain_client)
     elif isinstance(blockchain_client, ChainComClient):
         return chain_com.broadcast_transaction(hex_tx, blockchain_client)
     elif isinstance(blockchain_client, (BitcoindClient, AuthServiceProxy)):
@@ -179,7 +183,7 @@ def serialize_sign_and_broadcast(inputs, outputs, private_key,
 
     print("SS_&_B: Un_TX :: = %s" % unsigned_tx)
 
-    #print("SS_&_B: Length of Inputs = %s" % xrange(0, len(inputs)))
+    print("SS_&_B: Length of Inputs = %s" % xrange(0, len(inputs)))
 
     # generate a scriptSig for each input
     for i in xrange(0, len(inputs)):
