@@ -175,4 +175,7 @@ class NamecoinPublicKey(BitcoinPublicKey):
 
 class ReddcoinPublicKey(BitcoinPublicKey):
     _version_byte = 61
-    #_testnet_version_bytes=111
+
+
+class ReddcoinTestnetPublicKey(BitcoinPublicKey):
+    _version_byte = 111
