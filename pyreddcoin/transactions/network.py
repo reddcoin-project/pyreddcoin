@@ -9,9 +9,17 @@
 
 from binascii import hexlify, unhexlify
 from pyreddcointools import sign as sign_transaction
-
+import os
 from ..services import blockchain_info, chain_com, bitcoind, blockcypher, reddcoin_com, reddcoin_com_testnet
-from ..privatekey import ReddcoinPrivateKey
+
+# depending on whether or not we're talking to
+# -testnet/-regtest or mainnet, determine which private
+# and public key classes to use.
+if os.environ.get("BLOCKSTACK_TESTNET", None) == "1":
+    from ..privatekey import ReddcoinTestnetPrivateKey as ReddcoinPrivateKey
+else:
+    from ..privatekey import ReddcoinPrivateKey
+
 from .serialize import serialize_transaction, deserialize_transaction
 from .outputs import make_pay_to_address_outputs, make_op_return_outputs
 from ..constants import STANDARD_FEE, OP_RETURN_FEE
