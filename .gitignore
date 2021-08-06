@@ -47,3 +47,4 @@ secrets.py
 
 # swap files 
 *.swp
+.idea/
