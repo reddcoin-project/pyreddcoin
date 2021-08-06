@@ -10,7 +10,7 @@
 from binascii import hexlify, unhexlify
 from pyreddcointools import sign as sign_transaction
 
-from ..services import blockchain_info, chain_com, bitcoind, blockcypher, reddcoin_com
+from ..services import blockchain_info, chain_com, bitcoind, blockcypher, reddcoin_com, reddcoin_com_testnet
 from ..privatekey import ReddcoinPrivateKey
 from .serialize import serialize_transaction, deserialize_transaction
 from .outputs import make_pay_to_address_outputs, make_op_return_outputs
@@ -24,7 +24,7 @@ from ..constants import STANDARD_FEE, OP_RETURN_FEE
     chain.com: auth=(api_key_id, api_key_secret)
 """
 
-from ..services import (ChainComClient, BlockchainInfoClient, ReddcoinComClient, BitcoindClient,
+from ..services import (ChainComClient, BlockchainInfoClient, ReddcoinComClient, ReddcoinComTestnetClient, BitcoindClient,
     BlockcypherClient, BlockchainClient)
 from bitcoinrpc.authproxy import AuthServiceProxy
 
@@ -38,6 +38,8 @@ def get_unspents(address, blockchain_client=BlockchainInfoClient()):
         return blockchain_info.get_unspents(address, blockchain_client)
     elif isinstance(blockchain_client, ReddcoinComClient):
         return reddcoin_com.get_unspents(address, blockchain_client)
+    elif isinstance(blockchain_client, ReddcoinComTestnetClient):
+        return reddcoin_com_testnet.get_unspents(address, blockchain_client)
     elif isinstance(blockchain_client, ChainComClient):
         return chain_com.get_unspents(address, blockchain_client)
     elif isinstance(blockchain_client, (BitcoindClient, AuthServiceProxy)):
@@ -59,6 +61,8 @@ def broadcast_transaction(hex_tx, blockchain_client):
         return blockchain_info.broadcast_transaction(hex_tx, blockchain_client)
     elif isinstance(blockchain_client, ReddcoinComClient):
         return reddcoin_com.broadcast_transaction(hex_tx, blockchain_client)
+    elif isinstance(blockchain_client, ReddcoinComTestnetClient):
+        return reddcoin_com_testnet.broadcast_transaction(hex_tx, blockchain_client)
     elif isinstance(blockchain_client, ChainComClient):
         return chain_com.broadcast_transaction(hex_tx, blockchain_client)
     elif isinstance(blockchain_client, (BitcoindClient, AuthServiceProxy)):
